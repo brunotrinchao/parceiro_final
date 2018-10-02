@@ -3,10 +3,10 @@
 
         <!--logo and iconic logo start-->
         <div class="logo">
-            <h1><a href="index.html">Easy <span>Admin</span></a></h1>
+            <h1><a href="index.html">Super<span>Crédito</span></a></h1>
         </div>
         <div class="logo-icon text-center">
-            <a href="index.html"><i class="lnr lnr-home"></i> </a>
+        <h1><a href="index.html">S<span>C</span></a></h1>
         </div>
 
         <!--logo and iconic logo end-->

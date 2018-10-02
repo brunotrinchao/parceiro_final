@@ -23,16 +23,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--animate-->
 <link href="_assets/css/animate.css" rel="stylesheet" type="text/css" media="all">
 <script src="_assets/js/wow.min.js"></script>
-	<script>
-		 new WOW().init();
-	</script>
+<script>
+        new WOW().init();
+</script>
 <!--//end-animate-->
 <!----webfonts--->
 <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 <!---//webfonts--->
+<!-- SweetAlert -->
+<link rel="stylesheet" href="_assets/js/plugins/sweetalert2/sweetalert2.min.css">
+<!-- //SweetAlert -->
  <!-- Meters graphs -->
 <script src="_assets/js/jquery-1.10.2.min.js"></script>
-<!-- Placed js at the end of the document so the pages load faster -->
 
 </head>
 
