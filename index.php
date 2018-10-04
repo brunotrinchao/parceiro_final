@@ -1,7 +1,7 @@
 <?php
  include_once './config.php';
-
-$logado = (verificaSessao($_SESSION))? 'logado' : '';
+$verifica_logado = verificaSessao($_SESSION);
+$logado = ($verifica_logado)? 'logado' : '';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,7 +14,7 @@ $logado = (verificaSessao($_SESSION))? 'logado' : '';
     <link href="<?php echo URL_SYS ?>_assets/css/geral.min.css" rel="stylesheet">
 </head>
 
-<body id="home" class="logado">
+<body id="home" class="<?php echo $logado; ?>">
     <!-- Banner -->
     <div class="banner">
         <div class="container-fluid">
@@ -23,6 +23,15 @@ $logado = (verificaSessao($_SESSION))? 'logado' : '';
                     <img src="<?php echo URL_SYS ?>_assets/img/logo_branca.png" alt="" class="">
                 </div>
                 <div class="col-12 col-md-8 col-sm-4">
+                    <?php
+                        if($verifica_logado){
+                    ?>
+                        <div class="text-right">
+                            <span>Bruno</span> <a href="#" class="btn btn-link">Sair</a>
+                        </div>
+                    <?php
+                        }else{
+                    ?>
                     <form id="login" action="" class="form-inline float-right">
                     <div class="row">
                         <div class="col-12 col-sm-5 mb-2">
@@ -36,6 +45,9 @@ $logado = (verificaSessao($_SESSION))? 'logado' : '';
                         </div>
                     </div>
                     </form>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ $(document).ready(function() {
         var formData = $(this).serializeObject();
         $.gApi.exec('POST', 'login.php', formData,
             function(retorno) {
-                swal.close();
+                window.location.reload();
             },
             function(retorno) {
                 swal.close();
