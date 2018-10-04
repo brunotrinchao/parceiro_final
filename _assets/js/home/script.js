@@ -4,10 +4,10 @@ $(document).ready(function() {
         var formData = $(this).serializeObject();
         $.gApi.exec('POST', 'login.php', formData,
             function(retorno) {
-                console.log(retorno);
+                swal.close();
             },
             function(retorno) {
-                console.log(retorno);
+                swal.close();
             });
         return false;
     });

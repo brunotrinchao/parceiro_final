@@ -1,4 +1,15 @@
 <?php
+
+function verificaSessao($session){
+    if(isset($session['sc_portal'])){
+        if($session['sc_portal'] != NULL && $session['sc_portal']['Bloqueado'] == false){
+            return true;
+        }
+    }
+    return false;
+}
+
+
 function menuGenerator($tipo){
 
     switch ($tipo) {

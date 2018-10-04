@@ -1,5 +1,7 @@
 <?php
  include_once './config.php';
+
+$logado = (verificaSessao($_SESSION))? 'logado' : '';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,7 +14,7 @@
     <link href="<?php echo URL_SYS ?>_assets/css/geral.min.css" rel="stylesheet">
 </head>
 
-<body id="home">
+<body id="home" class="logado">
     <!-- Banner -->
     <div class="banner">
         <div class="container-fluid">
@@ -24,10 +26,10 @@
                     <form id="login" action="" class="form-inline float-right">
                     <div class="row">
                         <div class="col-12 col-sm-5 mb-2">
-                        <input type="text" name="login" class="form-control form-control-sm" placeholder="login">
+                        <input type="text" name="login" class="form-control form-control-sm" placeholder="login" value="domicio.imoveis">
                         </div>
                         <div class="col-12 col-sm-5 mb-2">
-                        <input type="password" name="senha" class="form-control form-control-sm" placeholder="senha">
+                        <input type="password" name="senha" class="form-control form-control-sm" placeholder="senha" value="dom0734">
                         </div>
                         <div class="col-12 col-sm-2 mb-2">
                         <button type="submit" class="btn btn-primary btn-sm btn-block">OK</button>
