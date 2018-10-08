@@ -30,7 +30,7 @@
 						echo '</li>';
 					}
 				?>
-                <li class="menu-list">
+                <!-- <li class="menu-list">
                     <a href="#"><i class="lnr lnr-cog"></i>
                         <span>Components</span></a>
                     <ul class="sub-menu-list">
@@ -59,7 +59,7 @@
                         <li><a href="sign-up.html">Sign Up</a></li>
                         <li><a href="blank_page.html">Blank Page</a></li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
             <!--sidebar nav end-->
         </div>
