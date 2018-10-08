@@ -27,7 +27,7 @@ $logado = ($verifica_logado)? 'logado' : '';
                         if($verifica_logado){
                     ?>
                         <div class="text-right">
-                            <span>Bruno</span> <a href="#" class="btn btn-link">Sair</a>
+                            <h6><span class="text-light"><?php echo $_SESSION['sc_portal']['Nome'] ?></span> <a href="#" class="btn btn-link">Sair</a></h6>
                         </div>
                     <?php
                         }else{
