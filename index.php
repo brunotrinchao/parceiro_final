@@ -60,11 +60,11 @@ $logado = ($verifica_logado)? 'logado' : '';
     <div class="container" id="menu">
         <div class="row">
             <div class="col col-12 col-md-6">
-                <a href="#" rel="IMOVEIS" class="btn_menu btn_produto" style="background-image: url('<?php echo URL_SYS ?>_assets/img/img_imovel.jpg');">
+                <a href="<?php echo URL_SYS . 'painel.php' ?>" rel="IMOVEIS" class="btn_menu btn_produto" style="background-image: url('<?php echo URL_SYS ?>_assets/img/img_imovel.jpg');">
                     <h2>Imóvel</h2>
                 </a>
             </div>
-            <div class="col col-12 col-md-6">
+            <!--<div class="col col-12 col-md-6">
                 <a href="#" rel="OI" class="btn_menu btn_produto" style="background-image: url('<?php echo URL_SYS ?>_assets/img/img_oi.jpg');">
                     <h2>Oi</h2>
                 </a>
@@ -79,7 +79,7 @@ $logado = ($verifica_logado)? 'logado' : '';
                 <a href="#" rel="CONSULTORIA" class="btn_menu btn_produto" style="background-image: url('<?php echo URL_SYS ?>_assets/img/img_consultoria.jpg');">
                     <h2>Consultoria de crédito</h2>
                 </a>
-            </div>
+            </div>-->
         </div>
     </div>
     </div>

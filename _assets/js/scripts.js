@@ -127,15 +127,75 @@
             jQuery('.searchform').insertBefore('.menu-right');
         }
     }
+
+    var SPMaskBehavior = function (val) {
+        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+      },
+      spOptions = {
+        onKeyPress: function(val, e, field, options) {
+            field.mask(SPMaskBehavior.apply({}, arguments), options);
+          }
+      };
+    $('.telefone').mask(SPMaskBehavior, spOptions);
+
+    var CMaskBehavior = function(val) {
+        var mask = '0#';
+        var attr = '';
+        var size = val.replace(/\D/g, '').length;
+        if (size == 11) {
+            mask = '000.000.000-00#';
+            attr = 'cpf';
+        } else if (size == 14) {
+            mask = '00.000.000/0000-00';
+            attr = 'cnpj';
+        }
+
+        $('.cpf_cnpj').attr('data-tipo', attr).trigger('change');
+
+        return mask;
+    },
+    spOptions = {
+        onKeyPress: function(val, e, field, options) {
+            field.mask(CMaskBehavior.apply({}, arguments), options);
+        }
+    };
+
+$('.cpf_cnpj').mask(CMaskBehavior, spOptions);
+
+    //---------
+    // Muda CPF CNPJ
+    $('input[name=TipoCliente]').change(function(){
+        if($(this).val() == 'PJ'){
+            $('#lbl_cpf').text('CNPJ*');
+        }else if($(this).val() == 'PF'){
+            $('#lbl_cpf').text('CPF*');
+        }         
+    });
+
+    $('#formNovaIndicacao').submit(function(){
+        if(!$('form').gValidate()){
+            var url = 'http://integracaogtsis.tempsite.ws/api/V1/Indicacoes/Supercredito';
+            var dados = $(this).serializeObject();
+            $.gApi.exec('POST', url, dados,
+                function(retorno){
+                console.log(retorno);
+            });
+            console.log(dados);
+            
+        }
+        return false;
+    });
+
+
 })(jQuery);
 
 // Dropdowns Script
-$(document).ready(function() {
-    $(document).on('click', function(ev) {
-        ev.stopImmediatePropagation();
-        $(".dropdown-toggle").dropdown("active");
-    });
-});
+// $(document).ready(function() {
+//     $(document).on('click', function(ev) {
+//         ev.stopImmediatePropagation();
+//         $(".dropdown-toggle").dropdown("active");
+//     });
+// });
 
 
 

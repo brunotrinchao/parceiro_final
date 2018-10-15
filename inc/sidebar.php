@@ -3,7 +3,7 @@
 
         <!--logo and iconic logo start-->
         <div class="logo">
-            <h1><a href="index.html">Super<span>Crédito</span></a></h1>
+            <h1><a href="index.html">SUPER<span>CRÉDITO</span></a></h1>
         </div>
         <div class="logo-icon text-center">
         <h1><a href="index.html">S<span>C</span></a></h1>

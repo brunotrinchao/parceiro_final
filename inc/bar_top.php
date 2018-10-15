@@ -37,3 +37,6 @@
             <!--notification menu end -->
         </div>
         <!-- //header-ends -->
+        <div class="main-content">
+        <div id="page-wrapper">
+        <div class="graphs">

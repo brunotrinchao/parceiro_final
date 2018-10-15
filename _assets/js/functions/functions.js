@@ -15,7 +15,7 @@ function alerta(titulo, texto, tipo, texto_botao) {
     config.title = _titulo;
     config.type = _tipo;
     if (texto != undefined || texto != null) {
-        config.text = texto;
+        config.html = texto;
     }
     if (texto_botao != undefined || texto_botao != null) {
         config.confirmButtonText = texto_botao;
@@ -77,4 +77,43 @@ function limparPlaceHolder() {
                 input.val('');
         });
     }
+}
+
+function maskTel(obj) {
+    var SPMaskBehavior = function(val) {
+            return val.replace(/\D/g, '').length === 11 ? '(99) 99999-9999' : '(99) 9999-99990';
+        },
+        spOptions = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+
+    $(obj).mask(SPMaskBehavior, spOptions);
+}
+
+function maskCPFCNPJ(obj) {
+    var CMaskBehavior = function(val) {
+            var mask = '0#';
+            var attr = '';
+            var size = val.replace(/\D/g, '').length;
+            if (size == 11) {
+                mask = '000.000.000-00#';
+                attr = 'cpf';
+            } else if (size == 14) {
+                mask = '00.000.000/0000-00';
+                attr = 'cnpj';
+            }
+
+            $(obj).attr('data-tipo', attr).trigger('change');
+
+            return mask;
+        },
+        spOptions = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(CMaskBehavior.apply({}, arguments), options);
+            }
+        };
+
+    $(obj).mask(CMaskBehavior, spOptions);
 }

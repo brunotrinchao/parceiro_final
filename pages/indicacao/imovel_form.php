@@ -1,0 +1,33 @@
+<?php
+
+$htmlForm .= '<div class="panel panel-default">';
+$htmlForm .= '<div class="panel-heading">Informações da indicação</div>';
+$htmlForm .= '<div class="panel-body">';
+$htmlForm .= '<div class="row">';
+$htmlForm .= '<div class="col-md-3">';
+$htmlForm .= $form->addSelect('sexo', array('1' => 'Alugar', '2' => 'Comprar'), '-1', 'Operação*', array('validate' => 'required', 'class' => 'form-control select2'), false, false, true, '', 'Selecione...', true, true) ;
+$htmlForm .= '</div>';
+$htmlForm .= '<div class="col-md-3">';
+$htmlForm .= $form->addSelect('tipo_uso', array('1' => 'Residencial', '2' => 'Comercial'), '-1', 'Tipo de uso*', array('validate' => 'required', 'class' => 'form-control select2'), false, false, true, '', 'Selecione...', true, true) ;
+$htmlForm .= '</div>';
+$htmlForm .= '<div class="col-md-3">';
+$htmlForm .= $form->addSelect('tipo_imovel', array(), '-1', 'Tipo do imóvel*', array('validate' => 'required', 'class' => 'form-control select2'), false, false, true, '', 'Selecione...', true, true) ;
+$htmlForm .= '</div>';
+$htmlForm .= '<div class="col-md-3">';
+$htmlForm .= $form->addInput('text', 'valor_bem', 'Valor do bem*', array('class' => 'form-control moeda', 'autocomplete' => 'off'), false, false, true);
+$htmlForm .= '</div>';
+$htmlForm .= '<div class="col-md-4">';
+$htmlForm .= $form->addInput('text', 'bairro_1', 'Bairro de preferência (1)', array('class' => 'form-control', 'autocomplete' => 'off'), false, false, true);
+$htmlForm .= '</div>';
+$htmlForm .= '<div class="col-md-4">';
+$htmlForm .= $form->addInput('text', 'bairro_2', 'Bairro de preferência (2)', array('class' => 'form-control', 'autocomplete' => 'off'), false, false, true);
+$htmlForm .= '</div>';
+$htmlForm .= '<div class="col-md-4">';
+$htmlForm .= $form->addInput('text', 'bairro_3', 'Bairro de preferência (3)', array('class' => 'form-control', 'autocomplete' => 'off'), false, false, true);
+$htmlForm .= '</div>';
+$htmlForm .= '<div class="col-md-12">';
+$htmlForm .= $form->addTextarea('observacao', '', 'Observação', array('class' => 'form-control'), false, false, true);
+$htmlForm .= '</div>';
+$htmlForm .= '</div>';
+$htmlForm .= '</div>';
+$htmlForm .= '</div>';

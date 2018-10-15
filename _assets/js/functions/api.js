@@ -87,9 +87,9 @@
                     }
 
                     displayError = (displayError === undefined) ? true : displayError;
-                    if (response.code >= 400 && displayError) {
+                    if (response.Code >= 400 && displayError) {
                         swal.close();
-                        alerta('Erro', response.error.message, 'error');
+                        alerta('Erro', response.Message.Error.replace('\n', '<br>'), 'error');
                         return false;
                     }
 
@@ -106,7 +106,7 @@
                     displayError = (displayError === undefined) ? true : displayError;
                     if (json.error && displayError) {
                         swal.close();
-                        alerta('Erro', response.error.message, 'error');
+                        alerta('Erro', response.Message.Error.replace('\n', '<br>'), 'error');
                     }
 
                     if (typeof callbackSuccess === 'function') {
