@@ -77,7 +77,6 @@
                     }
                 },
                 error: function(xhr) {
-                    console.log(xhr);
 
                     var response = (xhr.responseText) ? $.parseJSON(xhr.responseText) : { error: { message: 'Erro desconhecido', code: 500 } };
 
@@ -89,7 +88,7 @@
                     displayError = (displayError === undefined) ? true : displayError;
                     if (response.Code >= 400 && displayError) {
                         swal.close();
-                        alerta('Erro', response.Message.Error.replace('\n', '<br>'), 'error');
+                        alerta('Erro', response.Message.Error.replace("\n", "<br>"), 'error');
                         return false;
                     }
 
@@ -106,7 +105,7 @@
                     displayError = (displayError === undefined) ? true : displayError;
                     if (json.error && displayError) {
                         swal.close();
-                        alerta('Erro', response.Message.Error.replace('\n', '<br>'), 'error');
+                        alerta('Erro', response.Message.Error.replace("\n", "<br>"), 'error');
                     }
 
                     if (typeof callbackSuccess === 'function') {

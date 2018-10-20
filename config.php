@@ -1,4 +1,11 @@
 <?php
+
+
+error_reporting(0);
+ini_set("display_errors", "0");
+ini_set("log_errors", 0);
+
+
 session_start();
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/class/autoload.php';
@@ -14,7 +21,6 @@ define('ROOT_SYS_CLASS', ROOT_SYS . '/_class/');
 
 define('URL_SYS', 'http://localhost:3000/');
 define('ROOT_SYS_ASSETS', URL_SYS . '_assets/');
-
 
 
 $autoload = new Autoload();

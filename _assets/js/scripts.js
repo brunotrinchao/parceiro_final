@@ -1,6 +1,9 @@
 (function() {
     "use strict";
 
+    carregaTipoOperação();
+    carregaTipoUso();
+
     // custom scrollbar
 
     // $("html").niceScroll({styler:"fb",cursorcolor:"#27cce4", cursorwidth: '5', cursorborderradius: '10px', background: '#424f63', spacebarenabled:false, cursorborder: '0',  zindex: '1000'});
@@ -128,66 +131,171 @@
         }
     }
 
-    var SPMaskBehavior = function (val) {
-        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-      },
-      spOptions = {
-        onKeyPress: function(val, e, field, options) {
-            field.mask(SPMaskBehavior.apply({}, arguments), options);
-          }
-      };
+    var SPMaskBehavior = function(val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+        spOptions = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
     $('.telefone').mask(SPMaskBehavior, spOptions);
 
     var CMaskBehavior = function(val) {
-        var mask = '0#';
-        var attr = '';
-        var size = val.replace(/\D/g, '').length;
-        if (size == 11) {
-            mask = '000.000.000-00#';
-            attr = 'cpf';
-        } else if (size == 14) {
-            mask = '00.000.000/0000-00';
-            attr = 'cnpj';
-        }
+            var mask = '0#';
+            var attr = '';
+            var size = val.replace(/\D/g, '').length;
+            if (size == 11) {
+                mask = '000.000.000-00#';
+                attr = 'cpf';
+            } else if (size == 14) {
+                mask = '00.000.000/0000-00';
+                attr = 'cnpj';
+            }
 
-        $('.cpf_cnpj').attr('data-tipo', attr).trigger('change');
+            $('.cpf_cnpj').attr('data-tipo', attr).trigger('change');
 
-        return mask;
-    },
-    spOptions = {
-        onKeyPress: function(val, e, field, options) {
-            field.mask(CMaskBehavior.apply({}, arguments), options);
-        }
-    };
+            return mask;
+        },
+        spOptions = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(CMaskBehavior.apply({}, arguments), options);
+            }
+        };
 
-$('.cpf_cnpj').mask(CMaskBehavior, spOptions);
+    $('.cpf_cnpj').mask(CMaskBehavior, spOptions);
+    $('.moeda').mask('000.000.000.000.000,00', { reverse: true });
 
     //---------
     // Muda CPF CNPJ
-    $('input[name=TipoCliente]').change(function(){
-        if($(this).val() == 'PJ'){
+    $('input[name=TipoCliente]').change(function() {
+        if ($(this).val() == 'PJ') {
             $('#lbl_cpf').text('CNPJ*');
-        }else if($(this).val() == 'PF'){
+        } else if ($(this).val() == 'PF') {
             $('#lbl_cpf').text('CPF*');
-        }         
+        }
     });
 
-    $('#formNovaIndicacao').submit(function(){
-        if(!$('form').gValidate()){
+    $('#formNovaIndicacao').submit(function() {
+        if (tipo_cliente == undefined) {
+            alerta('Atenção', "Ocorreu um erro. Atualize a página para tentar resolver.<br>Caso o erro persista, entre em contato com o administrado.", 'warning', null)
+            return false;;
+        }
+
+        if (!$('form').gValidate()) {
             var url = 'http://integracaogtsis.tempsite.ws/api/V1/Indicacoes/Supercredito';
             var dados = $(this).serializeObject();
+
+            var payload = {
+                "Cliente": dados.Cliente,
+                "Email": dados.Email,
+                "Telefone": dados.Telefone,
+                "Celular": dados.Celular,
+                "Contato": dados.Cliente,
+                "CPF": dados.CPF,
+                "Sexo": dados.Sexo,
+                "idUsuarioParceiro": sessao_json.Parceiro.id,
+                "TipoCliente": dados.TipoCliente,
+                "Cep": dados.Cep,
+                "UF": dados.UF,
+                "Cidade": dados.Cidade,
+                "Bairro": dados.Bairro,
+                "Logradouro": dados.Logradouro,
+                "Complemento": dados.Complemento,
+                "Numero": Complemento.Numero,
+                "Produto": {
+                    "idProdutoIndicacao": dados.idProdutoIndicacao,
+                    "idTipoCliente": tipo_cliente.toString(),
+                    "idTipoOperacao": dados.idTipoOperacao,
+                    "idTipoUso": dados.idTipoUso,
+                    "idTipoImovel": dados.idTipoImovel,
+                    "ValorBem": dados.ValorBem,
+                    "PrimeiroBairroPreferencia": dados.PrimeiroBairroPreferencia,
+                    "SegundoBairroPreferencia": dados.SegundoBairroPreferencia,
+                    "TerceiroBairroPreferencia": dados.TerceiroBairroPreferencia
+                }
+            }
+            console.log(payload);
             $.gApi.exec('POST', url, dados,
-                function(retorno){
-                console.log(retorno);
-            });
+                function(retorno) {
+                    console.log(retorno);
+                });
             console.log(dados);
-            
+
         }
         return false;
     });
 
 
+
+    // Carregamentos
+
+    // tipo Imovel | Imóvel
+    $('#idTipoUso').change(function() {
+        var value = $(this).val()
+        if (value != '') {
+            carregaTipoImovel(value);
+        }
+    });
+
+    // Busca CEP
+    $('#Cep').blur(function() {
+        getCep(cep);
+    });
+
+
 })(jQuery);
+
+function carregaTipoOperação() {
+
+    if ($('#idTipoOperacao').length > 0) {
+        console.log('carregou');
+        var url = 'http://integracaogtsis.tempsite.ws/api/Imoveis/TipoOperacao';
+        $.gApi.exec('GET', url, {},
+            function(retorno) {
+                $('#idTipoOperacao').html(populaSelect(retorno, 'id', 'Tipo'));
+            });
+    }
+}
+
+function carregaTipoUso() {
+
+    if ($('#idTipoUso').length > 0) {
+        console.log('carregou');
+        var url = 'http://integracaogtsis.tempsite.ws/api/Imoveis/TipoUso';
+        $.gApi.exec('GET', url, {},
+            function(retorno) {
+                $('#idTipoUso').html(populaSelect(retorno, 'id', 'Tipo')).removeAttr('disabled');
+            });
+    }
+}
+
+function carregaTipoImovel(tipo_uso) {
+
+    if ($('#idTipoImovel').length > 0) {
+        console.log('carregou');
+        var url = 'http://integracaogtsis.tempsite.ws/api/Imoveis/TipoImovel/Uso/' + tipo_uso;
+        $.gApi.exec('GET', url, {},
+            function(retorno) {
+                $('#idTipoImovel').html(populaSelect(retorno, 'id', 'Tipo')).removeAttr('disabled');
+            });
+    }
+}
+
+function getCep(cep) {
+    if ($('#Cep').length > 0) {
+        console.log('carregou');
+        var url = 'https://viacep.com.br/ws/' + cep + '/json/';
+        $.gApi.exec('GET', url, {},
+            function(retorno) {
+                $('#Logradouro').val(retorno.logradouro);
+                $('#Bairro').val(retorno.bairro);
+                $('#Cidade').val(retorno.cidade);
+                $('#Complemento').val(retorno.complemento);
+                $('#UF').val(retorno.uf);
+            });
+    }
+}
 
 // Dropdowns Script
 // $(document).ready(function() {

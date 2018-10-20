@@ -15,7 +15,7 @@ function alerta(titulo, texto, tipo, texto_botao) {
     config.title = _titulo;
     config.type = _tipo;
     if (texto != undefined || texto != null) {
-        config.html = texto;
+        config.html = texto.replace("\n", "<br>");
     }
     if (texto_botao != undefined || texto_botao != null) {
         config.confirmButtonText = texto_botao;
@@ -116,4 +116,13 @@ function maskCPFCNPJ(obj) {
         };
 
     $(obj).mask(CMaskBehavior, spOptions);
+}
+
+function populaSelect(objeto, value, texto) {
+    var html = '';
+    html += '<option value="" selected>Selecione...</option>';
+    $(objeto).each(function(index, element) {
+        html += '<option value="' + element[value] + '">' + element[texto] + '</option>';
+    })
+    return html;
 }
