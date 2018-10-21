@@ -239,9 +239,7 @@
     });
 
     // Busca CEP
-    $('#Cep').blur(function() {
-        getCep(cep);
-    });
+    $('#Cep').autocompleteAddress();
 
 
 })(jQuery);
@@ -249,7 +247,6 @@
 function carregaTipoOperação() {
 
     if ($('#idTipoOperacao').length > 0) {
-        console.log('carregou');
         var url = 'http://integracaogtsis.tempsite.ws/api/Imoveis/TipoOperacao';
         $.gApi.exec('GET', url, {},
             function(retorno) {
@@ -282,20 +279,6 @@ function carregaTipoImovel(tipo_uso) {
     }
 }
 
-function getCep(cep) {
-    if ($('#Cep').length > 0) {
-        console.log('carregou');
-        var url = 'https://viacep.com.br/ws/' + cep + '/json/';
-        $.gApi.exec('GET', url, {},
-            function(retorno) {
-                $('#Logradouro').val(retorno.logradouro);
-                $('#Bairro').val(retorno.bairro);
-                $('#Cidade').val(retorno.cidade);
-                $('#Complemento').val(retorno.complemento);
-                $('#UF').val(retorno.uf);
-            });
-    }
-}
 
 // Dropdowns Script
 // $(document).ready(function() {

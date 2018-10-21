@@ -19,6 +19,7 @@
 	window.tipo_cliente = <?php echo $tipo_cliente ?>;
 </script>
 
+<?php goUrl(); ?>
 <?php include_once('./pages/dashboard.php'); ?>
 <?php
 $inicial->getFooter();

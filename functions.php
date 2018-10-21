@@ -2,11 +2,24 @@
 
 function verificaSessao($session){
     if(isset($session['sc_portal'])){
-        if($session['sc_portal'] != NULL && $session['sc_portal']['Bloqueado'] == false){
+        if($session['sc_portal']['Bloqueado'] == false){
             return true;
+        }else{
+            header('Location: ' . URL_SYS);
         }
+    }else{
+        header('Location: ' . URL_SYS);
     }
-    return false;
+}
+
+function debug($array, $print_r = true){
+    echo '<pre class="debug">';
+    if($print_r){
+        print_r($array);
+    }else{
+        var_dump($array);
+    }
+    echo '</pre>';
 }
 
 
@@ -23,7 +36,7 @@ function menuGenerator($tipo){
                         "url" => null,
                     ],
                     [
-                        'id' => 1,
+                        'id' => 2,
                         "nome" => "Interessado",
                         "url" => null,
                     ]
@@ -31,7 +44,7 @@ function menuGenerator($tipo){
                 'submenu' => [
                     [
                         'nome' => 'Comprar/Alugar',
-                        'url' => 'indicar'
+                        'url' => 'pag/indicacao/imovel.php?tipo_cliente='
                     ],
                     [
                         'nome' => 'Gerenciar',

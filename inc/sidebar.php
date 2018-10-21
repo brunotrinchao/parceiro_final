@@ -24,7 +24,7 @@
 						echo '<span>'.$value_menu['nome'].'</span></a>';
 						echo '<ul class="sub-menu-list">';
 						foreach ($menu_sidebar['submenu'] as $key_submenu => $value_submenu) {
-							echo '<li><a href="grids.html">'.$value_submenu['nome'].'</a> </li>';
+							echo '<li><a href="'.URL_SYS.$value_submenu['url'].$value_menu['id'].'">'.$value_submenu['nome'].'</a> </li>';
 						}
 						echo '</ul>';
 						echo '</li>';

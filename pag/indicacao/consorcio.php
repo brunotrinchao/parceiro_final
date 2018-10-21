@@ -1,3 +1,4 @@
+<h3 class="blank1">Nova indicação</h3>
 <?php
 $htmlForm = '';
 $form = new Form();
