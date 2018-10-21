@@ -1,7 +1,7 @@
 <?php
     include_once('../../config.php');
     verificaSessao($_SESSION);
-
+    $produto_id = 1;
 	$inicial = new Inicial('teste', 'tt', 't');
 	$inicial->getHeader();
 	include_once('../../inc/sidebar.php');
@@ -22,7 +22,7 @@
 if($tipo_cliente == 'undefined'){
 echo "<h3 class=\"blank1\">Imóvel</h3>";
 }else{
-    echo "<h3 class=\"blank1\">Imóvel</h3><h4 class=\"blank1\">Nova indicação</h4>";
+    echo "<h3 class=\"blank1\">Imóvel <br><small>Nova indicação</small></h3>";
 $htmlForm = '';
 $form = new Form();
 $htmlForm .= $form->open('formNovaIndicacao', 'form-vertical form');

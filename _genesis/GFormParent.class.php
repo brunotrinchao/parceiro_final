@@ -403,18 +403,18 @@ class GFormParent {
         $return .= '</select>' . $legendAfter;
         $return .= $a;
 
-        if ($hiddenLabel) {
-            $return .= $this->addInput('hidden', $id . '_text', false, false, false, false, false);
-            $return .= '<script> ';
-            $return .= '$(function(){ $("#' . $id . '").change(function() { ';
-            $return .= 'var selecteds = []; ';
-            $return .= '$("#' . $id . ' :selected").each(function(i, selected){ selecteds[i] = $(selected).text(); }); ';
-            $return .= '$("#' . $id . '_text").val(trim(selecteds.join("|"))); ';
-            $return .= '});';
-            // $return .= '$("#' . $id . '").change();';
-            $return .= '});';
-            $return .= '</script>';
-        }
+        // if ($hiddenLabel) {
+        //     $return .= $this->addInput('hidden', $id . '_text', false, false, false, false, false);
+        //     $return .= '<script> ';
+        //     $return .= '$(function(){ $("#' . $id . '").change(function() { ';
+        //     $return .= 'var selecteds = []; ';
+        //     $return .= '$("#' . $id . ' :selected").each(function(i, selected){ selecteds[i] = $(selected).text(); }); ';
+        //     $return .= '$("#' . $id . '_text").val(trim(selecteds.join("|"))); ';
+        //     $return .= '});';
+        //     // $return .= '$("#' . $id . '").change();';
+        //     $return .= '});';
+        //     $return .= '</script>';
+        // }
         $return .= ($control) ? '</div>' : ''; // .controls
         $return .= ($control) ? '</div>' : ''; // .control-label
 

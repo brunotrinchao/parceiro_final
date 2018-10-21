@@ -169,23 +169,30 @@
     //---------
     // Muda CPF CNPJ
     $('input[name=TipoCliente]').change(function() {
+        console.log($(this).val());
+        
         if ($(this).val() == 'PJ') {
-            $('#lbl_cpf').text('CNPJ*');
+            $('#lbl_CPF').text('CNPJ*');
+            $('.cpf_cnpj').mask('00.000.000/0000-00', spOptions);
         } else if ($(this).val() == 'PF') {
-            $('#lbl_cpf').text('CPF*');
+            $('#lbl_CPF').text('CPF*');
+            $('.cpf_cnpj').mask('000.000.000-00#', spOptions);
         }
     });
 
     $('#formNovaIndicacao').submit(function() {
+        console.log('Tipo cliente', tipo_cliente);
+        
         if (tipo_cliente == undefined) {
             alerta('Atenção', "Ocorreu um erro. Atualize a página para tentar resolver.<br>Caso o erro persista, entre em contato com o administrado.", 'warning', null)
             return false;;
         }
 
-        if (!$('form').gValidate()) {
+        if ($('form').gValidate()) {
             var url = 'http://integracaogtsis.tempsite.ws/api/V1/Indicacoes/Supercredito';
             var dados = $(this).serializeObject();
-
+            console.log(dados);
+            
             var payload = {
                 "Cliente": dados.Cliente,
                 "Email": dados.Email,
@@ -216,12 +223,19 @@
                 }
             }
             console.log(payload);
-            $.gApi.exec('POST', url, dados,
+            $.gApi.exec('POST', url, payload,
                 function(retorno) {
-                    console.log(retorno);
-                });
-            console.log(dados);
-
+                    if(retorno.Code >= 200 && retorno.Code < 300){
+                        swal({
+                            title: 'Sucesso',
+                            text: retorno.Message.Success,
+                            type: 'success'
+                          }).then((result) => {
+                            location.reload();
+                          });
+                    }
+                }
+            );
         }
         return false;
     });
@@ -239,7 +253,10 @@
     });
 
     // Busca CEP
-    $('#Cep').autocompleteAddress();
+    $('#Cep').autocompleteAddress({
+        setReadonly: true,
+        setDisabled: false   
+    });
 
 
 })(jQuery);

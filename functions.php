@@ -48,7 +48,7 @@ function menuGenerator($tipo){
                     ],
                     [
                         'nome' => 'Gerenciar',
-                        'url' => 'listar'
+                        'url' => 'pag/indicacao/imovel_gerenciar.php?tipo_cliente='
                     ]
                 ]
             ];
@@ -56,7 +56,7 @@ function menuGenerator($tipo){
             break;
 
         default:
-            # code...
+            return null;
             break;
     }
 }

@@ -12,23 +12,25 @@
         <!--logo and iconic logo end-->
         <div class="left-side-inner">
 				<?php
-					$menu_sidebar = menuGenerator(1);
+					$menu_sidebar = menuGenerator($produto_id);
 				?>
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
                 <li class="active"><a href="index.html"><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a></li>
-				<?php
-					foreach ($menu_sidebar['menu'] as $key_menu => $value_menu) {
-						echo '<li class="menu-list">';
-						echo '<a href="#"><i class="lnr lnr-cog"></i>';
-						echo '<span>'.$value_menu['nome'].'</span></a>';
-						echo '<ul class="sub-menu-list">';
-						foreach ($menu_sidebar['submenu'] as $key_submenu => $value_submenu) {
-							echo '<li><a href="'.URL_SYS.$value_submenu['url'].$value_menu['id'].'">'.$value_submenu['nome'].'</a> </li>';
-						}
-						echo '</ul>';
-						echo '</li>';
-					}
+                <?php
+                    if($menu_sidebar){
+                        foreach ($menu_sidebar['menu'] as $key_menu => $value_menu) {
+                            echo '<li class="menu-list">';
+                            echo '<a href="#"><i class="lnr lnr-cog"></i>';
+                            echo '<span>'.$value_menu['nome'].'</span></a>';
+                            echo '<ul class="sub-menu-list">';
+                            foreach ($menu_sidebar['submenu'] as $key_submenu => $value_submenu) {
+                                echo '<li><a href="'.URL_SYS.$value_submenu['url'].$value_menu['id'].'">'.$value_submenu['nome'].'</a> </li>';
+                            }
+                            echo '</ul>';
+                            echo '</li>';
+                        }
+                    }
 				?>
                 <!-- <li class="menu-list">
                     <a href="#"><i class="lnr lnr-cog"></i>
