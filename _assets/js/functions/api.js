@@ -115,21 +115,22 @@
                 }
             });
         },
-        paginate: function(links, targetPreloader, targetPagination, callbackRender, callback) {
+        paginate: function(links, targetPreloader, targetPagination, callbackRender, callback, endpoint) {
             var html = '<div class="row-fluid paginate">';
-
+            console.log(links);
+            
             html += '<div class="span12">';
-            html += '<div class="pagination no-margin text-center" data-current="' + links.self + '">';
-            if (links.total_pages > 0) {
-                html += '<div class="summary">Página ' + links.page + ' de ' + links.total_pages + '</div>';
+            html += '<div class="pagination no-margin text-center" data-current="' + links.Self + '">';
+            if (links.TotalPages > 0) {
+                html += '<div class="summary">Página ' + links.Page + ' de ' + links.TotalPages + '</div>';
             }
 
-            if (links.total_pages > 1) {
-                html += '<ul>';
-                html += '<li class="link first ' + (!links.first ? 'disabled' : '') + '"><a>&lt;&lt;</a></li>';
-                html += '<li class="link prev ' + (!links.prev ? 'disabled' : '') + '"><a>&lt;</a></li>';
-                html += '<li class="link next ' + (!links.next ? 'disabled' : '') + '"><a>&gt;</a></li>';
-                html += '<li class="link last ' + (!links.last ? 'disabled' : '') + '"><a>&gt;&gt;</a></li>';
+            if (links.TotalPages > 1) {
+                html += '<ul class="pagination">';
+                html += '<li class="link first ' + (!links.First ? 'disabled' : '') + '"><a>&lt;&lt;</a></li>';
+                html += '<li class="link prev ' + (!links.Prev ? 'disabled' : '') + '"><a>&lt;</a></li>';
+                html += '<li class="link next ' + (!links.Next ? 'disabled' : '') + '"><a>&gt;</a></li>';
+                html += '<li class="link last ' + (!links.Last ? 'disabled' : '') + '"><a>&gt;&gt;</a></li>';
                 html += '</ul>';
             }
 
@@ -137,33 +138,34 @@
             html += '</div>';
 
             html += '</div>';
-
             $(targetPagination).html(html).find('.link a').click(function() {
                 var $li = $(this).parents('.link');
                 var liClass = $li.attr('class');
                 if (!$li.hasClass('disabled')) {
                     var action = liClass.replace('link ', '').trim();
-                    var endpoint = '';
+                    var endpointFinal = '';
                     switch (action) {
                         case 'next':
-                            endpoint = links.next;
+                            endpointFinal = endpoint+links.Next;
                             break;
                         case 'prev':
-                            endpoint = links.prev;
+                            endpointFinal = endpoint+links.Prev;
                             break;
                         case 'last':
-                            endpoint = links.last;
+                            endpointFinal = endpoint+links.Last;
                             break;
                         case 'first':
-                            endpoint = links.first;
+                            endpointFinal = endpoint+links.First;
                             break;
                     }
-                    if (endpoint) {
-                        $.gApi.exec('GET', endpoint, {},
+                    console.log(endpointFinal);
+                    
+                    if (endpointFinal) {
+                        $.gApi.exec('GET', endpointFinal, {},
                             function(json) {
-                                callbackRender.call(this, json);
+                                callbackRender.call(this, json._Links);
                                 if (typeof callback === 'function') {
-                                    callback.call(this, json);
+                                    callback.call(this, json._Links);
                                 }
                             }, false, targetPreloader
                         );

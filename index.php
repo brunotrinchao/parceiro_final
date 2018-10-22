@@ -1,6 +1,7 @@
 <?php
- include_once './config.php';
-$verifica_logado = verificaSessao($_SESSION);
+include_once './config.php';
+
+$verifica_logado = ($_SESSION['sc_portal'])? true:false;;
 $logado = ($verifica_logado)? 'logado' : '';
 
 ?>

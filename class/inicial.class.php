@@ -36,6 +36,8 @@ class Inicial{
         $html .= '<link href="'.URL_SYS.'_assets/css/animate.css" rel="stylesheet" type="text/css" media="all">';
         $html .= '<link href="//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic" rel="stylesheet" type="text/css">';
         $html .= '<link rel="stylesheet" href="'.URL_SYS.'_assets/js/plugins/sweetalert2/sweetalert2.min.css">';
+        $html .= '<link rel="stylesheet" href="'.URL_SYS.'_assets/js/plugins/pagination/simplePagination.css">';
+        $html .= '<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />';
         $html .= '<script src="'.URL_SYS.'_assets/js/jquery-1.10.2.min.js"></script>';
         $html .= '</head>';
         $html .= '<body class="sticky-header">';
@@ -52,11 +54,14 @@ class Inicial{
         $html .= '</footer>';
         $html .= '<script src="'.URL_SYS.'_assets/js/jquery.nicescroll.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/bootstrap.min.js"></script>';
+        $html .= '<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>';
+        $html .= '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/plugins/sweetalert2/sweetalert2.all.min.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/jquery.mask.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/plugins/jquery.autocomplete-address.min.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/functions/functions.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/functions/gValidate.js"></script>';
+        $html .= '<script src="'.URL_SYS.'_assets/js/plugins/pagination/jquery.simplePagination.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/functions/api.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/scripts.js"></script>';
         $html .= '</body>';

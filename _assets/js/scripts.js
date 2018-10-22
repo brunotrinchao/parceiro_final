@@ -1,6 +1,7 @@
 (function() {
     "use strict";
-
+    var _obj_paginacao;
+      
     carregaTipoOperação();
     carregaTipoUso();
 
@@ -180,6 +181,73 @@
         }
     });
 
+    var start = moment().startOf('month');
+    var end = moment();
+
+    function cb(start, end) {
+        $('#reportrange span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        $('#periodo').val(start.format('YYYY-MM-DD') + '-' + end.format('YYYY-MM-DD'));
+console.log(sessao_json);
+
+
+        var idParceiro = sessao_json.Parceiro.id+"?";
+        var numeroPagina = "NumeroPagina=1";
+        var totalPagina = "TamanhoPagina=1&";
+        var dataPeriodo = "DataInicial="+start.format('YYYY-MM-DD')+"&DataFinal="+end.format('YYYY-MM-DD')+"&";
+        var idUsuarioParceiro = "idUsuarioParceiro="+sessao_json.id+"&";
+        var idProduto = "idProduto="+id_produto+"&";
+        var param = idParceiro + totalPagina + dataPeriodo + idUsuarioParceiro + idProduto;
+        var url = "http://integracaogtsis.tempsite.ws/api/Indicacoes/Supercredito/Parceiros/"+param + "NumeroPagina=1";
+        var url_paginacao = "http://integracaogtsis.tempsite.ws/api/Indicacoes/Supercredito/Parceiros/"+param + "NumeroPagina=";
+
+        $.gApi.exec('GET', url, {},
+            function(retorno) {
+                $('#paginacao').pagination({
+                    items: retorno._Links.Count,
+                    itemsOnPage: 1,
+                    cssStyle: 'light-theme',
+                    currentPage: retorno._Links.Page,
+                    onPageClick: function(i, q){
+                        $.gApi.exec('GET', url_paginacao+i, {},
+                            function(retorno) {
+
+                            });
+                    },
+                    onInit: function(){
+                        _obj_paginacao = retorno.Data
+                        
+                    }
+                });
+            }
+        );
+    }
+
+    $('#reportrange').daterangepicker({
+        startDate: start,
+        endDate: end,
+        maxDate:end,
+        showDropdowns: true,
+        ranges: {
+           'Hoje': [moment(), moment()],
+           'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Últimos 7 dias': [moment().subtract(6, 'days'), moment()],
+           'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
+           'Este mês': [moment().startOf('month'), moment().endOf('month')],
+           'Mês passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        locale: {
+            applyLabel: 'Filtrar',
+            fromLabel: 'De',
+            toLabel: 'Até',
+            customRangeLabel: 'Selecionar período',
+            daysOfWeek: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            firstDay: 1
+        }
+    }, cb);
+
+    cb(start, end);
+
     $('#formNovaIndicacao').submit(function() {
         console.log('Tipo cliente', tipo_cliente);
         
@@ -240,6 +308,9 @@
         return false;
     });
 
+    // Paginanção
+    // $.gApi.paginate(links, targetPreloader, targetPagination, callbackRender, callback);
+
 
 
     // Carregamentos
@@ -294,6 +365,11 @@ function carregaTipoImovel(tipo_uso) {
                 $('#idTipoImovel').html(populaSelect(retorno, 'id', 'Tipo')).removeAttr('disabled');
             });
     }
+}
+
+function montaTabela(itens){
+    var html = '';
+    // var html += '';
 }
 
 
