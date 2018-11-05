@@ -1,4 +1,25 @@
-    <!-- left side start-->
+<?php
+if(!$verificaSession){
+    header('Location: ' . URL_SYS);
+}
+
+$sessao =  $_SESSION["sc_portal"];
+
+$sessao_json =  json_encode($_SESSION["sc_portal"]);
+$tipo_cliente = ($_GET['tipo_cliente'])? $_GET['tipo_cliente'] : 'undefined';
+$tipo_financiamento = ($_GET['tipo_financiamento'])? $_GET['tipo_financiamento'] : 'undefined';
+$tipo_consorcio = ($_GET['tipo_consorcio'])? $_GET['tipo_consorcio'] : 'undefined';
+?>
+
+<script>
+	
+	window.sessao_json = <?php echo $sessao_json ?>;
+    window.tipo_cliente = <?php echo $tipo_cliente ?>;
+    window.tipo_financiamento = <?php echo $tipo_financiamento ?>;
+    window.id_produto = <?php echo $produto_id ?>;
+    window.url_sys = encodeURI("<?php echo URL_SYS ?>");
+</script>
+<!-- left side start-->
     <div class="left-side sticky-left-side">
 
         <!--logo and iconic logo start-->
@@ -31,16 +52,21 @@
                             echo '</li>';
                         }
                     }
-				?>
-                <!-- <li class="menu-list">
+                ?>
+                <?php
+                    if($sessao['EhMaster']){
+                ?>
+                <li class="menu-list">
                     <a href="#"><i class="lnr lnr-cog"></i>
-                        <span>Components</span></a>
+                        <span>Administração</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="grids.html">Grids</a> </li>
-                        <li><a href="widgets.html">Widgets</a></li>
+                        <li><a href="<?php echo URL_SYS; ?>pag/adm/produtos.php">Produtos</a> </li>
                     </ul>
                 </li>
-                <li><a href="forms.html"><i class="lnr lnr-spell-check"></i> <span>Forms</span></a></li>
+                <?php
+                    }
+                ?>
+               <!--  <li><a href="forms.html"><i class="lnr lnr-spell-check"></i> <span>Forms</span></a></li>
                 <li><a href="tables.html"><i class="lnr lnr-menu"></i> <span>Tables</span></a></li>
                 <li class="menu-list"><a href="#"><i class="lnr lnr-envelope"></i> <span>MailBox</span></a>
                     <ul class="sub-menu-list">

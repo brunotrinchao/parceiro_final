@@ -8,14 +8,14 @@
             <!--notification menu start -->
             <div class="menu-right">
                 <div class="user-panel-top">
+                    <ul class="menu-produtos nav navbar-nav"></ul>
                     <div class="profile_details">
                         <ul>
                             <li class="dropdown profile_details_drop">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <div class="profile_img">
-                                        <span style="background:url(_assets/images/1.jpg) no-repeat center"> </span>
                                         <div class="user-name">
-                                            <p>Michael<span>Administrator</span></p>
+                                            <p><?php echo $sessao['Parceiro']->Nome ?><span>Último acesso <?php echo $sessao['DataUltimoAcesso'] ?></span></p>
                                         </div>
                                         <i class="lnr lnr-chevron-down"></i>
                                         <i class="lnr lnr-chevron-up"></i>
@@ -23,9 +23,7 @@
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu drp-mnu">
-                                    <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
-                                    <li> <a href="#"><i class="fa fa-user"></i>Profile</a> </li>
-                                    <li> <a href="sign-up.html"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                                    <li> <a href="<?php echo URL_SYS; ?>sair.php"><i class="fa fa-sign-out"></i> Sair</a> </li>
                                 </ul>
                             </li>
                             <div class="clearfix"> </div>

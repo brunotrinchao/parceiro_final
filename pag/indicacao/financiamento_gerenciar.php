@@ -1,12 +1,12 @@
 <?php
     include_once('../../config.php');
-    $produto_id = 1;
-	$inicial = new Inicial(TITULO_DEFAULT, 'Imóvel', '');
+    $produto_id = 2;
+	$inicial = new Inicial(TITULO_DEFAULT, 'Financiamento', '');
 	$inicial->getHeader();
 	include_once('../../inc/sidebar.php');
 	include_once('../../inc/bar_top.php');
 
-echo "<h3 class=\"blank1\">Imóvel <br><small>Gerenciar</small></h3>";
+echo "<h3 class=\"blank1\">Financiamento <br><small>Gerenciar</small></h3>";
 
 $htmlForm = '';
 $form = new Form();
@@ -60,3 +60,8 @@ echo $htmlForm;
 
 $inicial->getFooter();
 ?>
+<script>
+	$(document).ready(function(){
+		getTipoBem();	
+	});
+</script>

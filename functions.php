@@ -5,10 +5,10 @@ function verificaSessao($session){
         if($session['sc_portal']['Bloqueado'] == false){
             return true;
         }else{
-            header('Location: ' . URL_SYS);
+            return false;
         }
     }else{
-        header('Location: ' . URL_SYS);
+        return false;
     }
 }
 
@@ -43,12 +43,69 @@ function menuGenerator($tipo){
                     ],
                 'submenu' => [
                     [
-                        'nome' => 'Comprar/Alugar',
+                        // 'nome' => 'Comprar/Alugar',
+                        'nome' => 'Indicar',
                         'url' => 'pag/indicacao/imovel.php?tipo_cliente='
                     ],
                     [
                         'nome' => 'Gerenciar',
                         'url' => 'pag/indicacao/imovel_gerenciar.php?tipo_cliente='
+                    ]
+                ]
+            ];
+            return $arrayMenu;
+            break;
+        case 3:
+            $arrayMenu = [
+                'titulo' => "Financiamento",
+                'menu' => [
+                    [
+                        'id' => 1,
+                        "nome" => "Auto",
+                        "url" => null,
+                    ],
+                    [
+                        'id' => 2,
+                        "nome" => "Imóvel",
+                        "url" => null,
+                    ]
+                    ],
+                'submenu' => [
+                    [
+                        'nome' => 'Indicar',
+                        'url' => 'pag/indicacao/consorcio.php?tipo_consorcio='
+                    ],
+                    [
+                        'nome' => 'Gerenciar',
+                        'url' => 'pag/indicacao/consorcio_gerenciar.php?tipo_consorcio='
+                    ]
+                ]
+            ];
+            return $arrayMenu;
+            break;
+        case 2:
+            $arrayMenu = [
+                'titulo' => "Financiamento",
+                'menu' => [
+                    [
+                        'id' => 1,
+                        "nome" => "Tradicional",
+                        "url" => null,
+                    ],
+                    [
+                        'id' => 2,
+                        "nome" => "Refinanciamento",
+                        "url" => null,
+                    ]
+                    ],
+                'submenu' => [
+                    [
+                        'nome' => 'Indicar',
+                        'url' => 'pag/indicacao/financiamento.php?tipo_financiamento='
+                    ],
+                    [
+                        'nome' => 'Gerenciar',
+                        'url' => 'pag/indicacao/financiamento_gerenciar.php?tipo_financiamento='
                     ]
                 ]
             ];

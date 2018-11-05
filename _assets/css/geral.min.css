@@ -1,3 +1,68 @@
+.table_person {
+  margin: 0 0 40px 0;
+  width: 100%;
+  display: table;
+}
+@media screen and (max-width: 768px) {
+  .table_person .table {
+    display: block;
+  }
+}
+.row_person {
+  display: table-row;
+  background-color: #fff;
+}
+.row_person.gray {
+  background: ##EFEFEF;
+}
+.row_person.header_person .cell_person {
+  border-bottom: 0px;
+  background: #EFEFEF;
+}
+.row_person .cell_person {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 15px;
+  display: table-cell;
+}
+@media screen and (max-width: 768px) {
+  .row_person .cell_person {
+    padding: 2px 16px;
+    display: block;
+  }
+}
+@media screen and (max-width: 768px) {
+  .row_person {
+    padding: 14px 0 7px;
+    display: block;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  }
+  .row_person.header_person {
+    padding: 0;
+    height: 6px;
+    display: none;
+  }
+  .row_person.header_person .cell_person {
+    display: none;
+  }
+  .row_person .cell_person {
+    margin-bottom: 10px;
+  }
+  .row_person .cell_person :last-child {
+    border-bottom: 0px;
+  }
+  .row_person .cell_person:before {
+    margin-bottom: 3px;
+    content: attr(data-title);
+    min-width: 98px;
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #969696;
+    display: block;
+  }
+}
 /*******************************
             HOME
 *******************************/
@@ -173,6 +238,28 @@
 }
 #home.logado .banner .titulo h1:after {
   content: "Selecione um produto";
+}
+.detalhe-negocio .item-box {
+  margin-bottom: 15px;
+}
+.detalhe-negocio .item-box .subtitulo h4 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 10px 0px;
+  color: #666;
+}
+.detalhe-negocio .item-box .item-detalhe {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+.detalhe-negocio .item-box .item-detalhe span {
+  margin-bottom: 3px;
+  width: 100%;
+  font-size: 10px;
+  line-height: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #969696;
+  display: block;
 }
 .debug {
   position: fixed;

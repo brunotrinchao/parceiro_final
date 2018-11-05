@@ -9,7 +9,7 @@ $logado = ($verifica_logado)? 'logado' : '';
 <html lang="pt-br">
 
 <head>
-    <title></title>
+    <title><?php echo TITULO_DEFAULT; ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<?php echo URL_SYS ?>_assets/plugins/bootstrap/css/bootstrap.min.css">

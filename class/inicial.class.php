@@ -11,10 +11,10 @@ class Inicial{
     private $_defult;
     private $_sidebar;
 
-    public function __construct($tilulo, $subtitulo = '', $complementoTopo = '')
+    public function __construct($titulo, $subtitulo = '', $complementoTopo = '')
     {
-        $this->titulo = strip_tags($tilulo);
-        $this->subtitulo = $subtitulo;
+        $this->titulo = strip_tags($titulo);
+        $this->subtitulo = (strip_tags($subtitulo))? ' | ' . strip_tags($subtitulo): '';
         $this->complementoTopo = $complementoTopo;
 
         $this->_defult = ['jquery', 'bootstrap', 'default', 'sweetalert2', 'scripts'];
@@ -26,7 +26,7 @@ class Inicial{
         $html = '<!DOCTYPE HTML>';
         $html .= '<html>';
         $html .= '<head>';
-        $html .= '<title>Portal do parceiro | Home </title>';
+        $html .= '<title>'.$this->titulo.$this->subtitulo.' </title>';
         $html .= '<meta name="viewport" content="width=device-width, initial-scale=1">';
         $html .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
         $html .= '<link href="'.URL_SYS.'_assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />';
@@ -38,6 +38,7 @@ class Inicial{
         $html .= '<link rel="stylesheet" href="'.URL_SYS.'_assets/js/plugins/sweetalert2/sweetalert2.min.css">';
         $html .= '<link rel="stylesheet" href="'.URL_SYS.'_assets/js/plugins/pagination/simplePagination.css">';
         $html .= '<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />';
+        $html .= '<link href="'.URL_SYS.'_assets/css/geral.min.css" rel="stylesheet" type="text/css" />';
         $html .= '<script src="'.URL_SYS.'_assets/js/jquery-1.10.2.min.js"></script>';
         $html .= '</head>';
         $html .= '<body class="sticky-header">';
@@ -61,7 +62,7 @@ class Inicial{
         $html .= '<script src="'.URL_SYS.'_assets/js/plugins/jquery.autocomplete-address.min.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/functions/functions.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/functions/gValidate.js"></script>';
-        $html .= '<script src="'.URL_SYS.'_assets/js/plugins/pagination/jquery.simplePagination.js"></script>';
+        $html .= '<script src="'.URL_SYS.'_assets/js/plugins/bootpag.min.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/functions/api.js"></script>';
         $html .= '<script src="'.URL_SYS.'_assets/js/scripts.js"></script>';
         $html .= '</body>';

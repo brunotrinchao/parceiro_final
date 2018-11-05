@@ -18,12 +18,12 @@ $(document).ready(function() {
 function carregaProdutos(){
     $.gApi.exec('GET', 'http://integracaogtsis.tempsite.ws/api/ProdutosIndicacao', {},
     function(retorno) {
+        localStorage.setItem("sc_parceiros", JSON.stringify({"produtos": retorno}));
         $(retorno).each(function(index, element){
-            console.log(element);
-            
-            if(element.Ativo){
+            console.log(element);            
+            // if(element.Ativo){
                 $('#menu .row').append(montaProduto(element));
-            }
+            // }
         });
         
     });
