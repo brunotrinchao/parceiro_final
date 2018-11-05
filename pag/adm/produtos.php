@@ -1,5 +1,6 @@
 <?php
     include_once('../../config.php');
+	verificaAdmin($sessao['EhMaster']);
     $produto_id = 1;
 	$inicial = new Inicial(TITULO_DEFAULT, 'Adminitrar Produtos', '');
 	$inicial->getHeader();

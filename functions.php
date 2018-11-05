@@ -5,11 +5,17 @@ function verificaSessao($session){
         if($session['sc_portal']['Bloqueado'] == false){
             return true;
         }else{
-            return false;
+            header("location:".URL_SYS);
         }
     }else{
-        return false;
+        header("location:".URL_SYS);
     }
+}
+
+function verificaAdmin($data){
+	if(!$data){
+		header("location:".URL_SYS . "pag/block.php");
+	}
 }
 
 function debug($array, $print_r = true){
